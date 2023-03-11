@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Artiverse</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+!<!-- Canvas -->
+<canvas class="orb-canvas"></canvas>
+<!-- Overlay -->
+<div class="overlay">
+  <!-- Overlay inner wrapper -->
+  <div class="overlay__inner">
+    <!-- Title -->
+    <h1 class="overlay__title">
+      Welcome to
+      <span class="text-gradient">Artiverse</span> !
+    </h1>
+    <!-- Description -->
+    <p class="overlay__description">
+     Here, your imagination becomes true !
+      <strong><br>Start with a detailed description of your imagination!</strong>
+    </p>
+    <!-- Buttons -->
+    <input type="text" id="prompt-input" start>
+    <div class="overlay__btns">
+      <button class="overlay__btn overlay__btn--transparent" id="generate-btn">
+Generate
+      </button>
+    </div>
+  </div>
+  <div id="output-section"></div>
+</div>
+<!-- partial -->
+  <script type="module" src="./script.js"></script>
+
+</body>
+</html>

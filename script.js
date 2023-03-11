@@ -226,30 +226,42 @@ generateBtn.addEventListener("click", async () => {
   // Display "Please wait..." message in output section
   outputSection.textContent = "Please wait...";
 
-  // Generate image using prompt input
-  const response = await fetch(
-    "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1",
-    {
-      headers: {
-        Authorization: "Bearer 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",
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({ inputs: promptInput.value }),
+  try {
+    // Generate image using prompt input
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1",
+      {
+        headers: {
+          Authorization: "Bearer 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",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({ inputs: promptInput.value }),
+      }
+    );
+
+    // Check for API errors
+    if (!response.ok) {
+      throw new Error("API error");
     }
-  );
-  const result = await response.blob();
 
-  // Create an image element to display the generated image
-  const image = new Image();
-  image.src = URL.createObjectURL(result);
+    const result = await response.blob();
 
-  // Wait for image to load before displaying it in output section
-  image.onload = () => {
-    outputSection.innerHTML = "";
-    outputSection.appendChild(image);
+    // Create an image element to display the generated image
+    const image = new Image();
+    image.src = URL.createObjectURL(result);
+
+    // Wait for image to load before displaying it in output section
+    image.onload = () => {
+      outputSection.innerHTML = "";
+      outputSection.appendChild(image);
+      generateBtn.disabled = false;
+    };
+  } catch (error) {
+    // Display error message to the user
+    outputSection.textContent = "Error: " + error.message + ". Please try again.";
     generateBtn.disabled = false;
-  };
+  }
 });
 
 // Set initial message in output section

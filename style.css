@@ -39,14 +39,14 @@ body {
   transition: transform 150ms ease;
   outline-color: hsl(var(--hue), 95%, 50%);
   background: transparent;
-
-  width: 80%;
+  width: 100%;
+  max-width: 80%;
   height: 40px;
   font-size: 18px;
   border: 2px solid;
   border-radius: 5px;
   box-sizing: border-box;
-  margin-bottom: 20px;c
+  margin-bottom: 20px;
 }
 .orb-canvas {
   position: fixed;

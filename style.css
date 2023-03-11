@@ -153,7 +153,41 @@ a {
   justify-content: center;
   align-items: center;
 }
+#output-section {
 
+  width: 60%;
+
+  float: right;
+
+  padding: 5px;
+
+  transition: transform 150ms ease;
+
+  outline-color: hsl(var(--hue), 95%, 50%);
+
+  background: transparent;
+
+  border: 2px solid;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+
+}
+
+
+
+#output-section img {
+
+  max-width: 100%;
+
+  height: auto;
+
+  border: 2px solid #ccc;
+
+  border-radius: 2px;
+
+}
 /* Not too many browser support this yet but it's good to add! */
 @media (prefers-contrast: high) {
   .orb-canvas {
@@ -208,22 +242,4 @@ a {
   .overlay__btn:first-child {
     margin-bottom: 1rem;
   }
-}
-#output-section {
-  width: 60%;
-  float: right;
-  padding: 5px;
-  transition: transform 150ms ease;
-  outline-color: hsl(var(--hue), 95%, 50%);
-  background: transparent;
-  border: 2px solid;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-#output-section img {
-  max-width: 100%;
-  height: auto;
-  border: 2px solid #ccc;
-  border-radius: 2px;
 }

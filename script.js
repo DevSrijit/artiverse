@@ -4,6 +4,7 @@ import SimplexNoise from "https://cdn.skypack.dev/simplex-noise@3.0.0";
 import hsl from "https://cdn.skypack.dev/hsl-to-hex";
 import debounce from "https://cdn.skypack.dev/debounce";
 
+
 // return a random number within a range
 function random(min, max) {
   return Math.random() * (max - min) + min;
@@ -218,9 +219,29 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 const promptInput = document.querySelector("#prompt-input");
 const generateBtn = document.querySelector("#generate-btn");
 const outputSection = document.querySelector("#output-section");
-
+  const endpointUrl = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyA8_CJzgbDBjw9SPehygfkpj9qBXZS6M0Q';
 generateBtn.addEventListener("click", async () => {
-  // Disable generate button while image is being generated
+  let requestBody = {
+    comment: {
+      text: promptInput.value
+    },
+    requestedAttributes: {
+      TOXICITY: {}
+    }
+  };
+  try {
+    const response = await fetch(endpointUrl, {
+      method: 'POST',
+      body: JSON.stringify(requestBody)
+    });
+    const data = await response.json();
+    const toxicityScore = data.attributeScores.TOXICITY.summaryScore.value;
+    console.log(`Toxicity score: ${toxicityScore}`);
+
+    if (toxicityScore > 0.3) {
+      outputSection.textContent = "Your input has been determined inappropriate.";
+    } else {
+      // Disable generate button while image is being generated
   generateBtn.disabled = true;
 
   // Display "Please wait..." message in output section
@@ -262,7 +283,10 @@ generateBtn.addEventListener("click", async () => {
     outputSection.textContent = "Error: " + error.message + ". Please try again.";
     generateBtn.disabled = false;
   }
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-// Set initial message in output section
 outputSection.textContent = "Please input a prompt and press generate.";

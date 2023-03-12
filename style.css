@@ -172,6 +172,9 @@ a {
   border: 2px solid #ccc;
   border-radius: 2px;
 }
+#credits {
+  padding-top: 20%;
+}
 /* Not too many browser support this yet but it's good to add! */
 @media (prefers-contrast: high) {
   .orb-canvas {

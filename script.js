@@ -238,7 +238,7 @@ generateBtn.addEventListener("click", async () => {
     const toxicityScore = data.attributeScores.TOXICITY.summaryScore.value;
     console.log(`Toxicity score: ${toxicityScore}`);
 
-    if (toxicityScore > 0.3) {
+    if (toxicityScore > 0.6) {
       outputSection.textContent = "Your input has been determined inappropriate.";
     } else {
       // Disable generate button while image is being generated

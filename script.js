@@ -250,7 +250,7 @@ generateBtn.addEventListener("click", async () => {
   try {
     // Generate image using prompt input
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1",
+      "https://api-inference.huggingface.co/models/wavymulder/Analog-Diffusion",
       {
         headers: {
           Authorization: "Bearer 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",
